@@ -5,4 +5,4 @@ This directory is intended for storing project-specific cloud-init configuration
 For each project, create a subdirectory within this directory. Ensure that the configuration includes:
 
 1. Project Name: The name of the project for clear identification.
-2. Brief of Cloud-Init Tasks: An outline of the specific tasks or configurations that the cloud-init script will perform.
+2. Brief Description of Cloud-Init Tasks: An outline of the specific tasks or configurations that the cloud-init script will perform.
