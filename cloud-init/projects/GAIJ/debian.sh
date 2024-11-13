@@ -1,9 +1,9 @@
 # Installation commands for Debian-based distros like Ubuntu, ...
 # Ask: add environment variable to load huggingface username and token as HF_USERNAME and HF_TOKEN
 # Ask: Add another environment variable for authentication for vLLM calling it VLLM_GAIJ_KEY
-# Ask: Please open port 8000 for the vLLM to wor
+# Ask: Please open port 8000 for the vLLM to work
 # Name: GAIJ
-# Contributers: Nuno Calaim, Oihane Horno, Nuno Loureiro, Leonardo Rydin
+# Contributors: Nuno Calaim, Oihane Horno, Nuno Loureiro, Leonardo Rydin
 
 # install CernVM-FS
 sudo apt-get install lsb-release
