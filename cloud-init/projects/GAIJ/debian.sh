@@ -38,7 +38,7 @@ done
 # Source the EESSI init script
 source /cvmfs/software.eessi.io/versions/2023.06/init/bash
 
-git clone https://$HF_USERNAME:$HF_TOKEN<hf_token>@huggingface.co/meta-llama/Llama-3.2-3B-Instruct
+git clone https://$HF_USERNAME:$HF_TOKEN@huggingface.co/meta-llama/Llama-3.2-3B-Instruct
 cd Llama-3.2-3B-Instruct/
 git lfs pull
 cd ..
