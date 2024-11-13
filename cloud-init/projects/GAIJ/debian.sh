@@ -51,4 +51,14 @@ pip install vllm
 sudo apt install screen
 
 screen -S vllm
-python -m vllm.entrypoints.openai.api_server --model /home/naic-user/Llama-3.2-3B-Instruct --host 0.0.0.0 --port 8000 --max_model_len 65536
+
+python -m vllm.entrypoints.openai.api_server \
+  --model /home/naic-user/Llama-3.2-3B-Instruct \
+  --host 0.0.0.0 \
+  --port 8000 \
+  --max_model_len 65536 \
+  --tensor-parallel-size 2 \
+  --cpu-offload \
+  --gpu-memory-utilization 0.9 \
+  --dtype bfloat16 \
+  --api-key $VLLM_GAIJ_KEY
