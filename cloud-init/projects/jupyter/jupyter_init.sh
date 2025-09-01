@@ -71,14 +71,14 @@ if ! kill -0 $JUPYTER_PID 2>/dev/null; then
     exit 1
 fi
 
-# call init_complete_url with status=started with PID and port
-if [ -n "$JUPYTER_INIT_COMPLETE_URL" ]; then
-    curl -fsS -X POST "$JUPYTER_INIT_COMPLETE_URL" -d "status=completed&pid=$JUPYTER_PID&port=$PORT&url=$JUPYTER_URL&token=$TOKEN" || true
-fi
-
 # Construct the full URL with VM IP
 VM_IP=$(ip -4 -o addr show scope global | awk '{print $4}' | cut -d'/' -f1 | head -1)
 JUPYTER_URL="http://${VM_IP}:${PORT}/?token=${TOKEN}"
+
+# call init_complete_url with status=started with PID, port, url and token
+if [ -n "$JUPYTER_INIT_COMPLETE_URL" ]; then
+    curl -fsS -X POST "$JUPYTER_INIT_COMPLETE_URL" -d "status=completed&pid=$JUPYTER_PID&port=$PORT&url=$JUPYTER_URL&token=$TOKEN" || true
+fi
 
 # Save the information to file
 {
