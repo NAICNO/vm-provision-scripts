@@ -38,14 +38,14 @@ fi
 
 # make a call to jupyter_init_start_url with status=starting
 if [ -n "$JUPYTER_INIT_START_URL" ]; then
-    curl -fsS -X POST "$JUPYTER_INIT_START_URL" -d "status=init_started&port=$PORT" || true
+    curl -fsS -X POST "$JUPYTER_INIT_START_URL" -d "status=init_started" || true
 fi
 
 # Check if the desired port is already in use
 if command -v ss >/dev/null 2>&1 && ss -ltn "( sport = :$PORT )" | grep -q LISTEN; then
     echo "Error: Port $PORT is already in use" >&2
     if [ -n "$JUPYTER_INIT_COMPLETE_URL" ]; then
-        curl -fsS -X POST "$JUPYTER_INIT_COMPLETE_URL" -d "status=failed&reason=port_in_use&port=$PORT" || true
+        curl -fsS -X POST "$JUPYTER_INIT_COMPLETE_URL" -d "status=failed&reason=port_in_use" || true
     fi
     exit 1
 fi
@@ -66,7 +66,7 @@ if ! kill -0 $JUPYTER_PID 2>/dev/null; then
     echo "Error: Jupyter Notebook failed to start" >&2
     echo "Check $LOG for details" >&2
     if [ -n "$JUPYTER_INIT_COMPLETE_URL" ]; then
-        curl -fsS -X POST "$JUPYTER_INIT_COMPLETE_URL" -d "status=failed&reason=failed_to_start&port=$PORT" || true
+        curl -fsS -X POST "$JUPYTER_INIT_COMPLETE_URL" -d "status=failed&reason=failed_to_start" || true
     fi
     exit 1
 fi
@@ -77,7 +77,7 @@ JUPYTER_URL="http://${VM_IP}:${PORT}/?token=${TOKEN}"
 
 # call init_complete_url with status=started with PID, port, url and token
 if [ -n "$JUPYTER_INIT_COMPLETE_URL" ]; then
-    curl -fsS -X POST "$JUPYTER_INIT_COMPLETE_URL" -d "status=completed&pid=$JUPYTER_PID&port=$PORT&url=$JUPYTER_URL&token=$TOKEN" || true
+    curl -fsS -X POST "$JUPYTER_INIT_COMPLETE_URL" -d "status=init_completed" || true
 fi
 
 # Save the information to file
