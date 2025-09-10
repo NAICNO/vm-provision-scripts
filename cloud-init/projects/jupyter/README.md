@@ -123,13 +123,6 @@ The script includes robust error handling for common scenarios:
 - Consider firewall rules to restrict access to port 8008
 - Monitor the log files for suspicious activity
 
-## Integration
-
-This script is designed to be called during VM provisioning and integrates with:
-- Cloud-init systems
-- VM management platforms that support HTTP callbacks
-- Environment module systems (Lmod, Environment Modules)
-
 ## Dependencies
 
 - bash shell
