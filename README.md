@@ -18,10 +18,6 @@ vm-provision-scripts/
 │   ├── debian.sh                  # Provisioning script for Debian-based distributions
 │   ├── rhel.sh                    # Provisioning script for RHEL-based distributions
 │   └── projects/                  # Project-specific configurations
-│       ├── README.md              # Guide for adding project configurations
-│       └── jupyter-notebook/      # Jupyter Notebook setup example
-│           ├── README.md          # Detailed documentation
-│           └── jupyter_init.sh    # Jupyter Notebook initialization script
 ├── LICENSE                        # GNU General Public License v2
 └── README.md                      # This file
 ```
@@ -76,22 +72,6 @@ bash cloud-init/rhel.sh
 
 The `cloud-init/projects/` directory contains specialized configurations for specific research projects or software environments.
 
-#### Jupyter Notebook Example
-```bash
-# Navigate to the project directory
-cd cloud-init/projects/jupyter-notebook/
-
-# Run the Jupyter initialization script
-./jupyter_init.sh <token> [start_url] [complete_url]
-```
-
-**Parameters:**
-- `token`: Authentication token for Jupyter Notebook (required)
-- `start_url`: HTTP callback URL for initialization start (optional)
-- `complete_url`: HTTP callback URL for initialization completion (optional)
-
-## Project-Specific Configurations
-
 ### Adding New Projects
 
 To add a new project configuration:
@@ -104,71 +84,6 @@ To add a new project configuration:
    - Configuration details
 3. Add your initialization scripts
 4. Follow the existing patterns for error handling and logging
-
-### Jupyter Notebook Project
-
-The Jupyter Notebook project provides:
-- Automatic Jupyter server startup on port 8008
-- Token-based authentication
-- External access configuration (IP binding to 0.0.0.0)
-- HTTP callback mechanism for status reporting
-- Comprehensive error handling
-- Connection information file generation
-- Environment modules integration
-
-See `cloud-init/projects/jupyter-notebook/README.md` for detailed documentation.
-
-## Error Handling
-
-The scripts include robust error handling:
-- **Missing dependencies**: Scripts verify required tools are available
-- **Network issues**: Timeout mechanisms for repository access
-- **Port conflicts**: Validation for service ports
-- **Process validation**: Confirmation of successful service startup
-- **HTTP callbacks**: Status reporting for remote monitoring
-
-## Requirements
-
-### System Requirements
-- Supported Linux distribution (Debian or RHEL-based)
-- Internet connectivity for package downloads
-- Sufficient disk space for software cache (minimum 10GB recommended)
-
-### Required Tools
-- `curl` - For HTTP operations and downloads
-- `wget` - For package downloads (Debian systems)
-- `ss` - For network port checking
-- `ip` - For network interface detection
-
-### Optional Dependencies
-- Environment Modules system (for project-specific configurations)
-- Project-specific software (e.g., Jupyter Notebook)
-
-## Security Considerations
-
-- Scripts run with elevated privileges for system package installation
-- Network services (like Jupyter) are configured with authentication tokens
-- External access is enabled for development/research environments
-- Review and customize security settings for production deployments
-
-## Contributing
-
-1. **Fork the repository**
-2. **Create a feature branch**
-3. **Add your project configuration** following existing patterns
-4. **Include comprehensive documentation**
-5. **Test your scripts** on target distributions
-6. **Submit a pull request**
-
-### Guidelines
-- Follow existing code style and error handling patterns
-- Include detailed README files for new projects
-- Test scripts on both Debian and RHEL-based systems where applicable
-- Ensure proper error reporting and logging
-
-## License
-
-This project is licensed under the GNU General Public License v2 - see the [LICENSE](LICENSE) file for details.
 
 ## Links
 
